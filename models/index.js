@@ -14,7 +14,7 @@ User.hasMany(AnswerComment, {
     onDelete: 'CASCADE',
 });
 
-Avatar.hasOne(User, {
+User.hasOne(Avatar, {
     foreignKey: 'avatar_id',
     onDelete: 'CASCADE',
 });
@@ -27,7 +27,7 @@ AnswerComment.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
-User.belongsTo(Avatar, {
+Avatar.belongsTo(User, {
     foreignKey: 'avatar_id',
 });
 
