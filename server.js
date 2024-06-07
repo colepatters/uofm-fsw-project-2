@@ -16,6 +16,6 @@ app.use(express.static(path.join(__dirname, "public")))
 
 app.use(router)
 
-app.listen(process.env.SERVER_PORT, () => {
-    console.log(`Listening on port ${process.env.SERVER_PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}`)
 })
