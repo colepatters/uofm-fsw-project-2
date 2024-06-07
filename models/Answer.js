@@ -20,14 +20,14 @@ Answer.init(
         question_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'question',
+                model: 'Question',
                 key: 'id',
             },
         },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'User',
                 key: 'id',
             },
         },
