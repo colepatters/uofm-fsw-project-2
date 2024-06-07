@@ -20,14 +20,14 @@ AnswerComment.init(
         answer_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'answer',
+                model: 'Answer',
                 key: 'id',
             },
         },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'User',
                 key: 'id',
             },
         },
