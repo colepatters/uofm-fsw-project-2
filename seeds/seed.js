@@ -1,6 +1,6 @@
 const questionData = require("./question");
 const { Question } = require("../models");
-const sequequlize = require("../config/db-connection");
+const sequequlize = require("../config/connection");
 
 
 sequequlize.sync({ force: true }).then(async () => {

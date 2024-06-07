@@ -32,4 +32,4 @@ Avatar.belongsTo(User, {
 });
 
 
-module.exports = { User, Question, Answer, AnswerComment, Avatar };
+module.exports = { Avatar, User, Question, Answer, AnswerComment };
