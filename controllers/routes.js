@@ -11,10 +11,10 @@ router.get("/login", (req, res) => {
 
 router.get('/', (req, res) => {
   res.render("home")
-})
+});
 
 router.get('/profile/:userId', (req, res) => {
   res.render('profile')
-})
+});
 
 module.exports = router;
