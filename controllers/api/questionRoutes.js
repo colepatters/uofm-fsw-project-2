@@ -3,7 +3,7 @@ const { Question } = require("../../models");
 const { auth } = require("../../utils/auth");
 
 // get a random question to display for the user
-router.get("/", auth, async (req, res) => {
+router.get("/",  async (req, res) => {
   try {
     const randomQuestion = await Question.findOne({ order: "RANDOM()" });
 
