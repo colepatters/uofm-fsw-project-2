@@ -10,7 +10,6 @@ router.get("/:questionId",  async (req, res) => {
       where: { question_id: questionId },
       include: { model: Comment },
     });
-
     res.json(answers);
   } catch (err) {
     res.status(500).json(err);
