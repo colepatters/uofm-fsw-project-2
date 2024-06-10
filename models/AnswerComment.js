@@ -17,20 +17,20 @@ AnswerComment.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        answer_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Answer',
-                key: 'id',
-            },
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'User',
-                key: 'id',
-            },
-        },
+        // answer_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'Answer',
+        //         key: 'id',
+        //     },
+        // },
+        // user_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'User',
+        //         key: 'id',
+        //     },
+        // },
     },
     {
         sequelize,

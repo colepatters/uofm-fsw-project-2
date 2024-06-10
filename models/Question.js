@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 
-class Questions extends Model{};
+class Question extends Model{};
 
-Questions.init(
+Question.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -30,4 +30,4 @@ Questions.init(
     }
 );
 
-module.exports = Questions;
+module.exports = Question;

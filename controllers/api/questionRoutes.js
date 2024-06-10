@@ -4,7 +4,7 @@ const { Question } = require("../../models");
 const { auth } = require("../../utils/auth");
 
 // get a random question to display for the user
-router.get("/", auth, async (req, res) => {
+router.get("/",  async (req, res) => {
   try {
     const questions = await Question.findAll();
     if (!questions.length) {
