@@ -33,13 +33,13 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        avatar_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Avatar',
-                key: 'id',
-            },
-        },
+        // avatar_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'Avatar',
+        //         key: 'id',
+        //     },
+        // },
     },
     {
         hooks: {
