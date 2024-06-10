@@ -39,13 +39,13 @@ Answer.belongsTo(Question, {
     onDelete: 'CASCADE',
 })
 
-// Question.hasMany(Answer, {
-//     foreignKey: 'question_id'
-// })
+Question.hasMany(Answer, {
+    foreignKey: 'question_id'
+})
 
-// Question.belongsTo(User, {
-//     foreignKey: 'user_id'
-// })
+Question.belongsTo(User, {
+    foreignKey: 'user_id'
+})
 
 
 

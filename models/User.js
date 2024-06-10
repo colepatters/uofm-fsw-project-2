@@ -24,22 +24,25 @@ User.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            validate: {
+                len: [4, 25],
+                is: /^[A-Za-z0-9]+$/i,
+            },
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [8, 16],
+            },
         },
-        // avatar_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: 'Avatar',
-        //         key: 'id',
-        //     },
-        // },
+        avatar_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Avatar',
+                key: 'id',
+            },
+        },
     },
     {
         hooks: {
