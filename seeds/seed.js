@@ -1,9 +1,8 @@
 const questionData = require("./question.json");
-const { Question } = require("../models");
-const sequequlize = require("../config/connection");
+const { Question } = require("../models/index");
+const sequelize = require("../config/connection");
 
-
-sequequlize.sync({ force: true }).then(async () => {
+sequelize.sync({ force: true }).then(async () => {
 
   await Question.bulkCreate(questionData);
   process.exit(0);
