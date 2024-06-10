@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { AnswerComment } = require("../../models");
-const { auth } = require("../../utils/auth");
+const  auth  = require("../../utils/auth");
 
 // post a new comment to an answer
 router.post("/:answerId", auth, async (req, res) => {
