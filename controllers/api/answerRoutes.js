@@ -3,7 +3,7 @@ const { Answer, Comment } = require("../../models");
 const { auth } = require("../../utils/auth");
 
 // get the answers for a specific question
-router.get("/:questionId",  async (req, res) => {
+router.get("/:questionId", async (req, res) => {
   try {
     const questionId = req.params.questionId;
     const answers = await Answer.findAll({
@@ -17,7 +17,7 @@ router.get("/:questionId",  async (req, res) => {
 });
 
 // post a new answer to a question
-router.post("/:questionId",  async (req, res) => {
+router.post("/:questionId", async (req, res) => {
   try {
     const questionId = req.params.questionId;
     const newAnswer = await Answer.create({
@@ -25,7 +25,6 @@ router.post("/:questionId",  async (req, res) => {
       question_id: questionId,
       user_id: req.session.user_id,
     });
-
     res.json(newAnswer);
   } catch (err) {
     res.status(500).json(err);

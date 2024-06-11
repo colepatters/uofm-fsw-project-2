@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const {Question} = require('../models');
-
 const auth = require('../utils/auth');
 
 router.get("/login", (req, res) => {
@@ -14,19 +13,24 @@ router.get("/login", (req, res) => {
 
 router.get('/', auth, async (req, res) => {
   try {
-    // THIS IS NOT WORKING. YOU NEED TO RESEAECH THE SEQUELIZE FUNCTIONS. POSSIBLYY RETURN ALL THE DATA AND THEN CHOOSE A RANDON ITEM FROM THE ARRAY RETURNED
-    // const randomQuestion = await Question.find({ order: "RANDOM()" });
-  
-    // const question = randomQuestion.get({plain: true})
-    // console.log(question);
-  
+    const questions = await Question.findAll();
+    if (questions.length === 0) {
+      res.status(404).json({ message: "No questions found!" });
+      return;
+    }
+
+    // Select a random question from the fetched questions
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    const randomQuestion = questions[randomIndex].get({ plain: true });
+
     res.render("home", {
-      // question
-    })
+      question: randomQuestion,
+    });
   } catch (error) {
-    res.json(error)
+    res.status(500).json(error);
   }
 });
+
 
 router.get('/profile/:userId', auth, (req, res) => {
   res.render('profile')

@@ -1,19 +1,25 @@
 const router = require("express").Router();
-const sequelize = require("../../config/connection");
-const { Question } = require("../../models");
+const { Question, Answer } = require("../../models");
 const { auth } = require("../../utils/auth");
 
-// get a random question to display for the user
-router.get("/",  async (req, res) => {
+router.get("/:questionId", async (req, res) => {
   try {
-    const questions = await Question.findAll();
-    if (!questions.length) {
-      res.status(404).json({ message: "No questions found!" });
+    const { questionId } = req.params;
+    const question = await Question.findByPk(questionId, {
+      include: [{ model: Answer }],
+    });
+
+    if (!question) {
+      res.status(404).json({ message: "Question not found!" });
       return;
     }
-    res.json(questions);
-  } catch (err) {
-    res.status(500).json(err);
+
+    res.render("question", {
+      question: question.get({ plain: true }),
+      answers: question.Answers.map((answer) => answer.get({ plain: true })),
+    });
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 
