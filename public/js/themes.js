@@ -45,10 +45,8 @@ function applyTheme(theme = null) {
     }
 }
 
-document.querySelector('#theme-select-light').addEventListener('click', applyTheme('light'))
-document.querySelector('#theme-select-dark').addEventListener('click', applyTheme('dark'))
-document.querySelector('#theme-select-match').addEventListener('click', applyTheme('match'))
-
-
+document.querySelector('#theme-select-light').addEventListener('click', () => applyTheme('light'))
+document.querySelector('#theme-select-dark').addEventListener('click', () => applyTheme('dark'))
+document.querySelector('#theme-select-match').addEventListener('click', () => applyTheme('match'))
 
 applyTheme()
