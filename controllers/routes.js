@@ -1,16 +1,17 @@
 const router = require("express").Router();
-const { Question } = require("../models");
+const {Question} = require('../models');
+const auth = require('../utils/auth');
 
 router.get("/login", (req, res) => {
-  // if (req.session.logged_in) {
-  //   res.redirect("/");
-  //   return;
-  // }
+  if (req.session.logged_in) {
+    res.redirect("/");
+    return;
+  };
 
   res.render("login");
 });
 
-router.get("/", async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
     const questions = await Question.findAll();
     if (questions.length === 0) {
@@ -30,8 +31,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/profile/:userId", (req, res) => {
-  res.render("profile");
+
+router.get('/profile/:userId', auth, (req, res) => {
+  res.render('profile')
 });
 
 module.exports = router;

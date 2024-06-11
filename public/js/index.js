@@ -1,6 +1,6 @@
 const questionEl = document.querySelector("#question");
 const textArea = document.querySelector("#user-answer");
-const submitBtn = document.querySelector("#submit");
+const submitBtn = document.querySelector("#submit");  
 const abandonBtn = document.querySelector("#abandon");
 let randomQuestionId = null;
 
