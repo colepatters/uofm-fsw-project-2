@@ -1,15 +1,22 @@
 const router = require("express").Router();
-const {Question} = require('../models');
+const {Question, Avatar, User} = require('../models');
 
 const auth = require('../utils/auth');
 
-router.get("/login", (req, res) => {
+router.get("/login", async (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
     return;
   };
 
-  res.render("login");
+  const avatarRawData = await Avatar.findAll();
+  const avatars = avatarRawData.map(avatar => avatar.get({ plain: true }));
+
+  console.log("avatar data ->", avatars);
+
+  res.render("login", {
+    avatars
+  });
 });
 
 router.get('/', auth, async (req, res) => {
@@ -21,8 +28,8 @@ router.get('/', auth, async (req, res) => {
     // console.log(question);
   
     res.render("home", {
-      // question
-    })
+      logged_in: req.session.logged_in,
+    });
   } catch (error) {
     res.json(error)
   }
