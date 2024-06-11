@@ -1,0 +1,18 @@
+{{#if answers}}
+  <div class="d-flex flex-column gap-4 container" style="padding-top: 4rem;">
+    <h1
+      class="text-center mx-auto"
+      style="max-width: 800px;"
+    >{{question.question}}</h1>
+    {{#each answers}}
+      <div class="card answer shadow-sm">
+        <div class="card-body">
+          <p class="mb-0">{{answer}}</p>
+          <!-- Add any other properties you want to display -->
+        </div>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>No answers found</p>
+{{/if}}
