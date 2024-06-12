@@ -31,7 +31,6 @@ AnswerComment.belongsTo(User, {
 
 Avatar.belongsTo(User, {
     foreignKey: 'avatar_id',
-    onDelete: 'CASCADE',
 });
 
 Answer.belongsTo(Question, {

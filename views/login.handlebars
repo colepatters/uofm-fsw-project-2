@@ -1,4 +1,4 @@
-<div class="row mt-4">
+<div class="row mt-4 w-100">
   <div class="col"></div>
   {{!-- Log In column --}}
   <div class="col">
@@ -37,72 +37,40 @@
             <input type="password" class="form-control" id="password-signup" placeholder="Password">
             <label for="password-signup">Password</label>
           </div>
-          {{!-- Select Avatar --}}
-          <div class="row mb-3">
-            <div class="col m-1">
-              <div class="form-check">
-                <input type="radio" class="btn-check" name="options-base" id="avatar1" autocomplete="off">
-                <label class="btn" for="avatar1">
-                  Avatar 1
-                  <img src="/images/avatars/svg/avatar1.svg" alt="avatar-1" width="100" height="100">
-                </label>
-              </div>
+          {{!-- custom styles for horizontal scroll when selecting an avatar --}}
+          <style>
+              .horizontal-scroll-container {
+                  overflow-x: auto;
+                  white-space: nowrap;
+                  width: 300px;
+              }
+              .form-check-inline {
+                  display: inline-block;
+                  margin-right: 1rem;
+              }
+              /* Style the scrollbar */
+              .horizontal-scroll-container::-webkit-scrollbar {
+                  width: 0px; 
+                  height: 0px; 
+              }
+              /* Hide the scrollbar */
+              .horizontal-scroll-container::-webkit-scrollbar-thumb {
+                  background: transparent; 
+              }
+          </style>
+          <div class="card-subtitle mb-2 text-center">Scroll and Select an Avatar!</div>
+            <div class="horizontal-scroll-container border border-black rounded-pill p-2 mb-3">
+              {{!-- Render each avatar --}}
+              {{#each avatars as |avatar|}}
+                <div class="form-check form-check-inline m-0 p-0">
+                  <input type="radio" class="btn-check"  name="options-base" id="avatar{{avatar.id}}" autocomplete="off" 
+                  data-id="{{avatar.id}}" />
+                  <label class="btn p-1 rounded-circle" for="avatar{{avatar.id}}">
+                    <img src="/images/avatars/svg/{{avatar.image_url}}" alt="{{avatar.name}}" width="70" height="70">
+                  </label>
+                </div>
+              {{/each}}
             </div>
-            <div class="col m-1">
-              <div class="form-check">
-                <input type="radio" class="btn-check" name="options-base" id="avatar2" autocomplete="off">
-                <label class="btn" for="avatar2">
-                  Avatar 2
-                  <img src="/images/avatars/svg/avatar2.svg" alt="avatar-2" width="100" height="100">
-                </label>
-              </div>
-            </div>
-            <div class="col m-1">
-              <div class="form-check">
-                <input type="radio" class="btn-check" name="options-base" id="avatar3" autocomplete="off">
-                <label class="btn" for="avatar3">
-                  Avatar 3
-                  <img src="/images/avatars/svg/avatar3.svg" alt="avatar-3" width="100" height="100">
-                </label>
-              </div>
-            </div>
-            <div class="col m-1">
-              <div class="form-check">
-                <input type="radio" class="btn-check" name="options-base" id="avatar4" autocomplete="off">
-                <label class="btn" for="avatar4">
-                  Avatar 4
-                  <img src="/images/avatars/svg/avatar4.svg" alt="avatar-4" width="100" height="100">
-                </label>
-              </div>
-            </div>
-            <div class="col m-1">
-              <div class="form-check">
-                <input type="radio" class="btn-check" name="options-base" id="avatar5" autocomplete="off">
-                <label class="btn" for="avatar5">
-                  Avatar 5
-                  <img src="/images/avatars/svg/avatar5.svg" alt="avatar-5" width="100" height="100">
-                </label>
-              </div>
-            </div>
-            <div class="col m-1">
-              <div class="form-check">
-                <input type="radio" class="btn-check" name="options-base" id="avatar6" autocomplete="off">
-                <label class="btn" for="avatar6">
-                  Avatar 6
-                  <img src="/images/avatars/svg/avatar6.svg" alt="avatar-6" width="100" height="100">
-                </label>
-              </div>
-            </div>
-            <div class="col m-1">
-              <div class="form-check">
-                <input type="radio" class="btn-check" name="options-base" id="avatar7" autocomplete="off">
-                <label class="btn" for="avatar7">
-                  Avatar 7
-                  <img src="/images/avatars/svg/avatar7.svg" alt="avatar-7" width="100" height="100">
-                </label>
-              </div>
-            </div>
-          </div>
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
       </div>

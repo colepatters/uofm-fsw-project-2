@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Avatar } = require("../../models");
 
 // get user info
 router.get("/:id", async (req, res) => {
@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
       display_name: req.body.display_name,
       username: req.body.username,
       password: req.body.password,
+      avatar_id: req.body.avatar
     });
     
     req.session.save(() => {

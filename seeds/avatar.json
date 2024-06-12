@@ -1,0 +1,30 @@
+[
+    {
+        "image_url": "lambAvatar.svg",
+        "name": "Lamb Avatar"
+    },
+    {
+        "image_url": "nofaceAvatar.svg",
+        "name": "No-Face Avatar"
+    },
+    {
+        "image_url": "avacadoAvatar.svg",
+        "name": "Avacado Avatar"
+    },
+    {
+        "image_url": "cactusAvatar.svg",
+        "name": "Cactus Avatar"
+    },
+    {
+        "image_url": "coffeeBanditAvatar.svg",
+        "name": "Coffee Bandit Avatar"
+    },
+    {
+        "image_url": "zombieAvatar.svg",
+        "name": "Zombie Avatar"
+    },
+    {
+        "image_url": "slothAvatar.svg",
+        "name": "Sloth Avatar"
+    }
+]
