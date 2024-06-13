@@ -1,36 +1,34 @@
 const { Answer, User, Avatar, Question } = require("../models");
 
 async function getUserData(userId) {
-    const userQuery = await User.findByPk(userId, {
+    const dbUserData = await User.findByPk(userId, {
         attributes: { exclude: ["password"] },
+        include: [
+            { model: Avatar}, 
+            {
+                 model: Answer,
+                 include: [{ model: Question }], 
+            }
+        ],
     });
-    const userData = userQuery.dataValues
 
-    let avatar = await Avatar.findByPk(userData.avatar_id)
-  
-    let userAnswers = await Answer.findAll({
-        where: {
-            user_id: userId
+    userData = dbUserData.get({ plain: true });
+
+    const avatar = userData.Avatar;
+    const answerArr = userData.Answers.map(answer => {
+        return {
+            question: answer.Question.question,
+            answer: answer.answer
         }
-    })
-
-    let temp = []
-    for await (const currentAnswerRef of userAnswers) {
-        const answer = currentAnswerRef.dataValues
-        const questionQuery = await Question.findByPk(currentAnswerRef.question_id)
-        temp.push({
-            question: questionQuery.dataValues,
-            answer: answer
-        })
-    }
-
+    });
+    console.log('answerArr', answerArr);
     return {
         user: userData,
         avatar,
-        answers: temp
-    }
-}
+        answers: answerArr,
+    };
+};
 
 module.exports = {
     getUserData
-}
+};
