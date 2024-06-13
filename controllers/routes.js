@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const {Question, Avatar} = require('../models');
+const { getUserData } = require("../services/userData");
 
 const auth = require('../utils/auth');
 
@@ -45,8 +46,10 @@ router.get('/', auth, async (req, res) => {
 });
 
 
-router.get('/profile/:userId', auth, (req, res) => {
-  res.render('profile')
+router.get('/profile/:userId', auth, async (req, res) => {
+  const userData = await getUserData(req.params.userId)
+  console.log(userData)
+  res.render('profile', { ...userData })
 });
 
 module.exports = router;

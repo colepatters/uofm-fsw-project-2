@@ -6,6 +6,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
+const countArrayEntries = require("./utils/helpers/countArrayEntries");
 // const helpers = require('./utils/helpers');
 
 const app = express();
@@ -16,8 +17,8 @@ const sess = {
   secret: "Super secret secret",
   cookie: {
     // Stored in milliseconds
-    // maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
-    maxAge: 1000 * 60 * 2, // expires in 2 minutes for testing purposes
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+    // maxAge: 1000 * 60 * 2, // expires in 2 minutes for testing purposes
   },
   resave: false,
   saveUninitialized: true,
@@ -28,7 +29,11 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({});
+const hbs = exphbs.create({
+  helpers: {
+    countArrayEntries
+  }
+});
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
