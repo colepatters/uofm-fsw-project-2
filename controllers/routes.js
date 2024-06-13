@@ -44,10 +44,22 @@ router.get('/', auth, async (req, res) => {
 });
 
 
+router.get('/profile', auth, async (req, res) => {
+  try {
+    const userData = await getUserData(req.session.user_id)
+    res.render('profile', { ...userData })
+  } catch (err) {
+    res.status(404).send('User profile not found!')
+  }
+});
+
 router.get('/profile/:userId', auth, async (req, res) => {
-  const userData = await getUserData(req.params.userId)
-  console.log(userData)
-  res.render('profile', { ...userData })
+  try {
+    const userData = await getUserData(req.params.userId)
+    res.render('profile', { ...userData })
+  } catch (err) {
+    res.status(404).send('User profile not found!')
+  }
 });
 
 module.exports = router;

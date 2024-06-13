@@ -26,7 +26,7 @@ async function getUserData(userId) {
 
     return {
         user: userData,
-        avatar,
+        avatar: avatar.dataValues,
         answers: temp
     }
 }
