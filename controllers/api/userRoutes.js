@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Avatar } = require("../../models");
+const { User, Avatar, Answer } = require("../../models");
 
 // get user info
 router.get("/:id", async (req, res) => {
@@ -8,12 +8,18 @@ router.get("/:id", async (req, res) => {
       attributes: { exclude: ["password"] },
     });
 
+    const userAnswers = await Answer.findAll({
+      where: {
+        user_id: req.params.id
+      }
+    })
+
     if (!userData) {
       res.status(404).json({ message: "User not found!" });
       return;
     }
 
-    res.json(userData);
+    res.json({userData, answers: userAnswers});
   } catch (err) {
     res.status(500).json(err);
   }
