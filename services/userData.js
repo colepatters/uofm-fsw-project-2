@@ -10,7 +10,7 @@ async function getUserData(userId) {
   
     let userAnswers = await Answer.findAll({
         where: {
-            user_id: 1
+            user_id: userId
         }
     })
 
