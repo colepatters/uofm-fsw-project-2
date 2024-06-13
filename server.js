@@ -7,6 +7,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const countArrayEntries = require("./utils/helpers/countArrayEntries");
+const errorHandler = require("./controllers/errorHandler");
 // const helpers = require('./utils/helpers');
 
 const app = express();
@@ -43,6 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
+app.use(errorHandler)
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
