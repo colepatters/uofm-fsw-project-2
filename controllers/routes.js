@@ -33,6 +33,8 @@ router.get('/', auth, async (req, res) => {
 
     res.render("home", {
 
+      user_id: req.session.user_id,
+
       logged_in: req.session.logged_in,
 
       question: randomQuestion,
@@ -46,7 +48,7 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/profile/:userId', auth, async (req, res) => {
   const userData = await getUserData(req.params.userId)
-  console.log(userData)
+  console.log('test', userData)
   res.render('profile', { ...userData })
 });
 

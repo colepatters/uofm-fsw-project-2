@@ -7,7 +7,7 @@
         <div>
           {{#if user.avatar_id}}
             <img
-              src="/images/avatars/{{avatar.image_url}}"
+              src="/images/avatars/svg/{{avatar.image_url}}"
               class="img-thumbnail profile-avatar"
               alt="..."
             />
@@ -39,7 +39,7 @@
   {{#if answers}}
     <div class="mt-3 d-flex flex-column gap-1" id="answers-container">
       {{#each answers as |answer|}}
-        {{> questionAnswer}}
+        {{> questionAnswer answer=answer}}
       {{/each}}
     </div>
   {{/if}}
