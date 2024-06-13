@@ -26,11 +26,14 @@ router.post('/', async (req, res) => {
       display_name: req.body.display_name,
       username: req.body.username,
       password: req.body.password,
-      avatar_id: req.body.avatar
+      avatar_id: req.body.avatar_id
     });
+
+    const userData = dbUserData.get({ plain: true });
     
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
 
       res.status(200).json(dbUserData);
     });
