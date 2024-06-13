@@ -41,14 +41,9 @@
         </li>
         <li class="nav-item d-flex">
           <a href="/login">
-
-            {{! TODO: ONLY SHOW IF USER IS SIGNED IN! }}
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="/profile"
-            >Profile</a>
-            {{! /TODO }}
+            {{#if logged_in}}
+            <a class="nav-link active" aria-current="page" href="/profile/{{user_id}}">Profile</a>
+            {{/if}}
           </a>
           <button id="logout" type="button" class="btn btn-success">Log out</button>
           <script src="/js/logout.js"></script>

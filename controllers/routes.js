@@ -33,6 +33,8 @@ router.get('/', auth, async (req, res) => {
 
     res.render("home", {
 
+      user_id: req.session.user_id,
+
       logged_in: req.session.logged_in,
 
       question: randomQuestion,

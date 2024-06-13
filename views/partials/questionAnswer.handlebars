@@ -1,6 +1,14 @@
-<div class="card w-100">
+<div class="card shadow-lg w-100 my-3">
+  <div class="card-header p-3 fs-3">
+    <span class="border border-2 rounded-pill shadow-md p-2">Question:</span>
+    {{answer.question}}
+  </div>
   <div class="card-body">
-    <h4>{{question.question}}</h4>
-    <p>{{answer.answer}}</p>
+    
+    
+    <p class="card-text fs-4">
+      <span class="border border-2 rounded-pill shadow-md p-2">Answered:</span>
+      {{answer.answer}}
+    </p>
   </div>
 </div>
