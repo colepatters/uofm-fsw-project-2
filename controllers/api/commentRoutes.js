@@ -15,7 +15,7 @@ router.post("/:answerId", auth, async (req, res) => {
     res.json(newComment);
   } catch (err) {
     res.status(500).json(err);
-  }
+  };
 });
 
 module.exports = router;

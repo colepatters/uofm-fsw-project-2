@@ -14,8 +14,6 @@ router.get("/login", async (req, res) => {
   const avatarRawData = await Avatar.findAll();
   const avatars = avatarRawData.map(avatar => avatar.get({ plain: true }));
 
-  console.log("avatar data ->", avatars);
-
   res.render("login", {
     avatars
   });

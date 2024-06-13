@@ -4,28 +4,30 @@ const Answer = require('./Answer');
 const AnswerComment = require('./AnswerComment');
 const Avatar = require('./Avatar');
 
+// User answer relationship
 User.hasMany(Answer, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
 
-User.hasMany(AnswerComment, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE',
-});
-
-User.hasOne(Avatar, {
-    foreignKey: 'avatar_id',
-    onDelete: 'CASCADE',
-});
-
 Answer.belongsTo(User, {
+    foreignKey: 'user_id',
+});
+
+// User answer comment relationship
+User.hasMany(AnswerComment, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
 
 AnswerComment.belongsTo(User, {
     foreignKey: 'user_id',
+    onDelete: 'CASCADE',
+});
+
+// User avatar relationship
+User.hasOne(Avatar, {
+    foreignKey: 'id',
     onDelete: 'CASCADE',
 });
 
@@ -36,15 +38,17 @@ Avatar.belongsTo(User, {
 Answer.belongsTo(Question, {
     foreignKey: 'question_id',
     onDelete: 'CASCADE',
-})
+});
 
 Question.hasMany(Answer, {
     foreignKey: 'question_id'
-})
+});
 
-Question.belongsTo(User, {
-    foreignKey: 'user_id'
-})
+/* Uncomment if user question feature is added */
+
+// Question.belongsTo(User, {
+//     foreignKey: 'user_id'
+// });
 
 
 

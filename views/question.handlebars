@@ -5,10 +5,16 @@
       style="max-width: 800px;"
     >{{question.question}}</h1>
     {{#each answers}}
-      <div class="card answer shadow-sm">
+      <div class="card answer shadow-md">
         <div class="card-body">
           <p class="mb-0">{{answer}}</p>
           <!-- Add any other properties you want to display -->
+          
+        </div>
+        <div class="card-footer mb-0">
+          Posted by: 
+          <a href="/profile/{{User.id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{User.username}}</a>
+          <img src="/images/avatars/svg/{{User.Avatar.image_url}}" height="30px" width="30px" alt="avatar"/>
         </div>
       </div>
     {{/each}}
