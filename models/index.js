@@ -25,6 +25,16 @@ AnswerComment.belongsTo(User, {
     onDelete: 'CASCADE',
 });
 
+// answerComment Answer relationship
+AnswerComment.hasOne(Answer, {
+    foreignKey: 'answer_id',
+    onDelete: 'CASCADE',
+});
+
+Answer.belongsTo(AnswerComment, {
+    foreignKey: 'answer_id',
+});
+
 // User avatar relationship
 Avatar.hasMany(User, {
     foreignKey: 'avatar_id',
