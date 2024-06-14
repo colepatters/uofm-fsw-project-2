@@ -13,28 +13,28 @@ AnswerComment.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        answerComment: {
+        answer_comment: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // answer_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: 'Answer',
-        //         key: 'id',
-        //     },
-        // },
-        // user_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: 'User',
-        //         key: 'id',
-        //     },
-        // },
+        answer_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Answer',
+                key: 'id',
+            },
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'User',
+                key: 'id',
+            },
+        },
     },
     {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
     }

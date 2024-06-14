@@ -11,14 +11,31 @@
           <!-- Add any other properties you want to display -->
           
         </div>
-        <div class="card-footer mb-0">
-          Posted by: 
-          <a href="/profile/{{User.id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{User.username}}</a>
-          <img src="/images/avatars/svg/{{User.Avatar.image_url}}" height="30px" width="30px" alt="avatar"/>
+        <div class="card-footer d-flex justify-content-between mb-0">
+          <div>
+            Posted by: 
+            <a href="/profile/{{User.id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{User.username}}</a>
+            <img src="/images/avatars/svg/{{User.Avatar.image_url}}" height="30px" width="30px" alt="avatar"/>
+          </div>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#commentForm{{id}}" aria-expanded="false" aria-controls="commentForm">
+            Leave a Comment
+          </button>
         </div>
       </div>
+      <div class="collapse" id="commentForm{{id}}">
+          <div class="card card-body text-center">
+            <form id="commentForm{{id}}">
+              <div class="d-flex flex-column align-items-center my-1">
+                <label for="commentInput{{id}}" class="form-label">Comment:</label>
+                <textarea class="form-control w-50" id="commentInput{{id}}" placeholder="Comment here..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-success mt-2" id="{{id}}">Post Comment!</button>
+            </form>
+          </div>
+        </div>
     {{/each}}
   </div>
+  <script src="/js/comment.js"></script>
 {{else}}
   <p>No answers found</p>
 {{/if}}

@@ -23,9 +23,11 @@ router.get("/:questionId", async (req, res) => {
       return;
     };
 
+
     res.render("question", {
       question: question.get({ plain: true }),
       answers: question.Answers.map((answer) => answer.get({ plain: true })),
+      logged_in: req.session.logged_in,
     });
   } catch (error) {
     res.status(500).json(error);
