@@ -4,7 +4,7 @@ async function getUserData(userId) {
     const dbUserData = await User.findByPk(userId, {
         attributes: { exclude: ["password"] },
         include: [
-            { model: Avatar}, 
+            { model: Avatar }, 
             {
                  model: Answer,
                  include: [{ model: Question }], 
@@ -12,7 +12,11 @@ async function getUserData(userId) {
         ],
     });
 
-    userData = dbUserData.get({ plain: true });
+    console.log('userid', userId);
+
+    const userData = dbUserData.get({ plain: true });
+
+    console.log('testing', userData);
 
     const avatar = userData.Avatar;
     const answerArr = userData.Answers.map(answer => {
@@ -21,7 +25,6 @@ async function getUserData(userId) {
             answer: answer.answer
         }
     });
-    console.log('answerArr', answerArr);
     return {
         user: userData,
         avatar,

@@ -36,6 +36,8 @@ router.post('/', async (req, res) => {
     });
 
     const userData = dbUserData.get({ plain: true });
+
+    console.log('userData', userData);
     
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -68,6 +70,8 @@ router.post("/login", async (req, res) => {
         .json({ message: "Incorrect email or password, please try again" });
       return;
     }
+    
+    console.log('userdata', userData.get({ plain: true }));
 
     req.session.save(() => {
       req.session.user_id = userData.id;

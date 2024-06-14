@@ -55,10 +55,15 @@ router.get('/profile', auth, async (req, res) => {
   }
 });
 
-router.get('/profile/:userId', auth, async (req, res, next) => {
+router.get('/profile/:userId', auth, async (req, res) => {
   try {
     const userData = await getUserData(req.params.userId)
-    res.render('profile', { ...userData })
+    console.log('here', userData);
+    res.render('profile', { 
+      ...userData,
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.render('404', { message: "Profile could not be found!" })
   }
