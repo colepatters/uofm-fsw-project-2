@@ -45,8 +45,10 @@
             <a class="nav-link active" aria-current="page" href="/profile/{{user_id}}">Profile</a>
             {{/if}}
           </a>
+          {{#if logged_in}}
           <button id="logout" type="button" class="btn btn-success">Log out</button>
           <script src="/js/logout.js"></script>
+          {{/if}}
         </li>
       </ul>
     </div>
