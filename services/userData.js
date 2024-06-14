@@ -12,6 +12,8 @@ async function getUserData(userId) {
         ],
     });
 
+    console.log('userid', userId);
+
     const userData = dbUserData.get({ plain: true });
 
     console.log('testing', userData);
