@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Question, Answer, User, Avatar } = require("../../models");
+const { Question, Answer, User, Avatar, AnswerComment } = require("../../models");
 const { auth } = require("../../utils/auth");
 
 router.get("/:questionId", async (req, res) => {
@@ -14,7 +14,8 @@ router.get("/:questionId", async (req, res) => {
               exclude: ['password'],
             },
             include: [{ model: Avatar }]
-          }],
+          },
+          { model: AnswerComment }],
         }],
     });
 
@@ -23,6 +24,10 @@ router.get("/:questionId", async (req, res) => {
       return;
     };
 
+    const test = question.get({ plain: true });
+
+    console.log('test test test', test.Answers);
+    
 
     res.render("question", {
       question: question.get({ plain: true }),

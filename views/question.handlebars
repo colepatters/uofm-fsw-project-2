@@ -4,36 +4,78 @@
       class="text-center mx-auto"
       style="max-width: 800px;"
     >{{question.question}}</h1>
+    <div class="container d-flex flex-column align-items-center">
+
     {{#each answers}}
-      <div class="card answer shadow-md">
+    <div class="container d-flex flex-row align items center mb-3">
+      <div class="card answer shadow-md me-4">
         <div class="card-body">
           <p class="mb-0">{{answer}}</p>
           <!-- Add any other properties you want to display -->
           
         </div>
         <div class="card-footer d-flex justify-content-between mb-0">
-          <div>
+          <div class="me-5">
             Posted by: 
             <a href="/profile/{{User.id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{User.username}}</a>
             <img src="/images/avatars/svg/{{User.Avatar.image_url}}" height="30px" width="30px" alt="avatar"/>
           </div>
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#commentForm{{id}}" aria-expanded="false" aria-controls="commentForm">
-            Leave a Comment
-          </button>
-        </div>
-      </div>
-      <div class="collapse" id="commentForm{{id}}">
-          <div class="card card-body text-center">
-            <form id="commentForm{{id}}">
-              <div class="d-flex flex-column align-items-center my-1">
-                <label for="commentInput{{id}}" class="form-label">Comment:</label>
-                <textarea class="form-control w-50" id="commentInput{{id}}" placeholder="Comment here..."></textarea>
-              </div>
-              <button type="submit" class="btn btn-success mt-2" id="{{id}}">Post Comment!</button>
-            </form>
+          <div>
+            {{#if AnswerComments}}
+            <button class="btn btn-secondary me-2" type="button"  data-bs-toggle="collapse" data-bs-target="#commentContainer{{id}}" aria-expanded="false" aria-controls="commentContainer{{id}}">
+              Show Comments
+            </button>
+            {{/if}}
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#commentFormCollapse{{id}}" aria-expanded="false" aria-controls="commentFormCollapse{{id}}">
+              Leave a Comment
+            </button>
           </div>
         </div>
+        {{!-- Comment Form --}}
+        <div class="collapse" id="commentFormCollapse{{id}}">
+            <div class="card card-body text-center">
+              <form id="commentForm{{id}}">
+                <div class="d-flex flex-column align-items-center my-1">
+                  <label for="commentInput{{id}}" class="form-label">Comment:</label>
+                  <textarea class="form-control w-75" id="commentInput{{id}}" placeholder="Comment here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-success mt-2" id="{{id}}">Post Comment!</button>
+              </form>
+            </div>
+        </div>
+      </div>
+      
+      {{!-- Show comments --}}
+      {{#if AnswerComments}}
+      <div>
+          <div class="collapse collapse-horizontal" id="commentContainer{{id}}">
+            <div class="card card-body d-flex flex-row flex-wrap" style="width: 600px; height:100%;">
+              {{!-- This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered. --}}
+              {{#each AnswerComments}}
+              <div class="card card-body text-center m-1">
+                {{answer_comment}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      </div>
     {{/each}}
+    </div>
+
+  </div>
+  {{!-- Test Toast --}}
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="commentSuccess" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Success!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Comment Posted!
+      </div>
+    </div>
   </div>
   <script src="/js/comment.js"></script>
 {{else}}
