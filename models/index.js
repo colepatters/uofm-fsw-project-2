@@ -26,12 +26,12 @@ AnswerComment.belongsTo(User, {
 });
 
 // answerComment Answer relationship
-AnswerComment.hasOne(Answer, {
+Answer.hasMany(AnswerComment, {
     foreignKey: 'answer_id',
     onDelete: 'CASCADE',
 });
 
-Answer.belongsTo(AnswerComment, {
+AnswerComment.belongsTo(Answer, {
     foreignKey: 'answer_id',
 });
 

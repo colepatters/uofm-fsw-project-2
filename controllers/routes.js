@@ -48,24 +48,27 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/profile', auth, async (req, res) => {
   try {
-    const userData = await getUserData(req.session.user_id)
-    res.render('profile', { ...userData })
+    const userData = await getUserData(req.session.user_id);
+    res.render('profile', { 
+      ...userData,
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in, 
+    });
   } catch (err) {
-    throw new Error('User profile not found!')
+    throw new Error('User profile not found!');
   }
 });
 
 router.get('/profile/:userId', auth, async (req, res) => {
   try {
-    const userData = await getUserData(req.params.userId)
-    console.log('here', userData);
+    const userData = await getUserData(req.params.userId);
     res.render('profile', { 
       ...userData,
       user_id: req.session.user_id,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    res.render('404', { message: "Profile could not be found!" })
+    res.render('404', { message: "Profile could not be found!" });
   }
 });
 
